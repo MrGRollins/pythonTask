@@ -41,12 +41,10 @@ class Rectangle(Figure):
         return self._width, self._height
 
     def new_perimeter(self):
-        self.perimeter = (self._width + self._height) * 2
-        return self.perimeter
+        return (self._width + self._height) * 2
 
     def new_square(self):
-        self.square = self._width * self._height
-        return self.square
+        return self._width * self._height
 
 # Квадрат
 class Square(Rectangle):
@@ -58,12 +56,10 @@ class Square(Rectangle):
         return self.a
 
     def new_perimeter(self):
-        self.perimeter = self.a * 4
-        return self.perimeter
+        return self.a * 4
 
     def new_square(self):
-        self.square = self.a * self.a
-        return self.square
+        return self.a * self.a
 
 # Круг
 class Circle(Figure):
@@ -75,12 +71,10 @@ class Circle(Figure):
         return self.r
 
     def new_perimeter(self):
-        self.perimeter = 2 * math.pi * self.r
-        return self.perimeter
+        return self.r * 2 * math.pi
 
     def new_square(self):
-        self.square = math.pi * math.sqrt(self.r)
-        return self.square
+        return math.pi * math.sqrt(self.r)
 
 # Треугольник
 class Triangle(Figure):
@@ -98,13 +92,11 @@ class Triangle(Figure):
         return self.a, self.b, self.c
 
     def new_perimeter(self):
-        self.perimeter = self.a + self.b + self.c
-        return self.perimeter
+        return self.a + self.b + self.c
 
     def new_square(self):
         h_per = self.perimeter/2
-        self.square = math.sqrt(h_per * (h_per - self.a) * (h_per - self.b) * (h_per - self.c))
-        return self.square
+        return math.sqrt(h_per * (h_per - self.a) * (h_per - self.b) * (h_per - self.c))
 
 if __name__ == '__main__':
     fig_rec = Rectangle(4.5, 7.1)
