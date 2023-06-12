@@ -7,79 +7,93 @@
 #       •	Сравнение размера стипендии с другим студентом/аспирантом (больше или меньше).
 
 class Student:
-    def __init__(self, name_Student, last_name_Student, age_Student, groups_Student, avg_rating_Student):
+    STIPEND = 0
+    STIPEND_GOOD = 4000
+    STIPEND_EXCELLENT = 6000
 
-        self.name_Student = name_Student
-        self.last_name_Student = last_name_Student
-        self.age_Student = age_Student
-        self.groups_Student = groups_Student
-        self.avg_rating_Student = avg_rating_Student
+    AVG_THREE = 3
+    AVG_GODD = 4
+    AVG_EXCELLENT = 5
+
+    def __init__(self, first_name, last_name, age_student, groups_student, avg_rating_student):
+
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age_student = age_student
+        self.groups_student = groups_student
+        self.avg_rating_student = avg_rating_student
 
     @property
     def student_info(self):
-        print(f"{self.name_Student}{' '}{self.last_name_Student}{', '}{self.age_Student}{' age'}")
+        print(f"{self.first_name}{' '}{self.last_name}{', '}{self.age_student}{' age'}")
 
     @property
-    def calculating_stipends(self):
-        self.stipends_st = 0
+    def stipends_calculating(self):
 
-        if self.avg_rating_Student == 5:
-            self.stipends_st = 6000
-        elif self.avg_rating_Student >= 3 and self.avg_rating_Student < 5:
-            self.stipends_st = 4000
+        if self.avg_rating_student == self.AVG_EXCELLENT:
+            self.stipends = self.STIPEND_EXCELLENT
+        elif self.avg_rating_student >= self.AVG_THREE and self.avg_rating_student < self.AVG_EXCELLENT:
+            self.stipends = self.STIPEND_GOOD
         else:
-            self.stipends_st = 0
+            self.stipends = self.STIPEND
+        return self.stipends
 
-        print("Размер стипендии студента:", self.stipends_st)
-
-    def stipends_delta_calculating(self, other):
-        if self.self.stipends_st > other.stipends:
-            print ("Стипендия ", self.name_Student, "больше чем у ", other.name_Student)
+    @property
+    def compares_stipends(self, other):
+        if self.stipends > other.stipends:
+            self.max_stipends_student = self.first_name
         else:
-            print("Стипендия ", other.name_Student, "больше чем у ", self.name_Student)
-
+            self.max_stipends_student = other.first_name
+        return self.max_stipends_student
 
 class PostGraduate:
-    def __init__(self, name_PostG, last_name_PostG, age_PostG, groups_PostG, scientific_work_PostG, avg_rating_PostG):
-        self.name_PostG = name_PostG
-        self.last_name_PostG = last_name_PostG
-        self.age_PostG = age_PostG
-        self.groups_PostG = groups_PostG
-        self.scientific_work_PostG = scientific_work_PostG
-        self.avg_rating_PostG = avg_rating_PostG
+    STIPEND = 0
+    STIPEND_GOOD = 6000
+    STIPEND_EXCELLENT = 8000
+
+    AVG_THREE = 3
+    AVG_GODD = 4
+    AVG_EXCELLENT = 5
+
+    def __init__(self, first_name, last_name, age_student, groups_student, title_scientific_work, avg_rating_student):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age_student = age_student
+        self.groups_student = groups_student
+        self.title_scientific_work = title_scientific_work
+        self.avg_rating_student = avg_rating_student
 
     @property
-    def postGraduate_info(self):
-            print(f"{self.name_PostG}{' '}{self.last_name_PostG}{', '}{self.age_PostG}{' age'}")
+    def student_info(self):
+            print(f"{self.first_name}{' '}{self.last_name}{', '}{self.age_student}{' age'}")
 
     @property
-    def calculating_stipends(self):
-        self.stipends = 0
+    def stipends_calculating(self):
 
-        if self.avg_rating_PostG == 5:
-            stipends = 8000
-        elif self.avg_rating_PostG >= 3 and self.avg_rating_PostG < 5:
-            stipends = 6000
+        if self.avg_rating_student == self.AVG_EXCELLENT:
+            self.stipends = self.STIPEND_EXCELLENT
+        elif self.avg_rating_student >= self.AVG_THREE and self.avg_rating_student < self.AVG_EXCELLENT:
+            self.stipends = self.STIPEND_GOOD
         else:
-            stipends = 0
+            self.stipends = self.STIPEND
+        return self.stipends
 
-        print("Размер стипендии аспиратна:", stipends)
-
-    def stipends_delta_calculating(self, other):
+    @property
+    def compares_stipends(self, other):
         if self.stipends > other.stipends:
-            print ("Стипендия ", self.name_PostG, "больше чем у ", other.name_PostG)
+            self.max_stipends_student = self.first_name
         else:
-            print("Стипендия ", other.name_PostG, "больше чем у ", self.name_PostG)
+            self.max_stipends_student = other.first_name
+        return self.max_stipends_student
 
 if __name__ == '__main__':
     student1 = Student("Ivan", "Pavlov", 18, "3542/8", 4.3)
     student2 = Student("Roman", "Ivanov", 20, "3542/7", 5)
     postGraduate = PostGraduate("Alexey ", "Ropas ", 22, " 4572/1", "Collector", 4)
 
-    print(student1.student_info, " | ", student1.calculating_stipends)
-    print(student2.student_info, " | ", student2.calculating_stipends)
+    print(student1.student_info, " | ", "Стипендия студента: ", student1.stipends_calculating)
+    print(student2.student_info, " | ", "Стипендия студента: ", student2.stipends_calculating)
     #print(postGraduate.postGraduate_info, " | ", postGraduate.calculating_stipends)
-
 
 
 
